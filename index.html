@@ -529,7 +529,7 @@
             height: 30px;
         }
 
-        /* --- 2. SEKSİYON (KIRMIZI): ÇORLUSPOR TV (YOLCULUK RESİMLERİ) --- */
+        /* --- 2. SEKSİYON (KIRMIZI): ÇORLUSPOR TV --- */
         .media-orange-section {
             background-color: var(--corlu-red);
             color: var(--brand-white);
@@ -660,7 +660,7 @@
             font-weight: 600;
         }
 
-        /* --- 3. SEKSİYON (SİYAH): TAKIMIMIZ (FIRST TEAM - HULL CITY STYLE) --- */
+        /* --- 3. SEKSİYON (SİYAH): TAKIMIMIZ (FIRST TEAM) --- */
         .players-grid-container {
             background-color: var(--brand-black);
             padding: 80px 5%;
@@ -815,17 +815,11 @@
             z-index: 3;
         }
 
-        /* --- 4. SEKSİYON (BEYAZ): TARİHÇE VE KULÜP --- */
+        /* --- 4. SEKSİYON (BEYAZ): TARİHÇE --- */
         .history-white-section {
             background-color: var(--brand-white);
             color: var(--brand-black);
             padding: 80px 5%;
-        }
-
-        .history-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 50px;
         }
 
         .history-content h2 {
@@ -858,75 +852,168 @@
             margin-bottom: 15px;
         }
 
-        /* Başkan Profil Kartı */
-        .president-card {
-            background-color: #f9f9f9;
-            border: 1px solid #e5e5e5;
-            border-radius: 8px;
-            padding: 30px;
+        /* --- 5. SEKSİYON (SİYAH): KULÜP BİLGİLERİ & STADYUM --- */
+        .club-info-section {
+            background-color: var(--brand-dark-grey);
+            color: var(--brand-white);
+            padding: 80px 5%;
+            border-top: 1px solid var(--brand-light-grey);
+        }
+
+        .club-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 40px;
+            margin-top: 20px;
+        }
+
+        .club-details-cards {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            align-self: start;
+            gap: 20px;
         }
 
-        .president-img-wrap {
-            width: 200px;
-            height: 200px;
-            max-width: 40vw;
-            max-height: 40vw;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 4px solid var(--corlu-red);
-            margin-bottom: 20px;
-            background-color: #eee;
+        .club-card {
+            background-color: var(--brand-mid-grey);
+            border-left: 4px solid var(--corlu-red);
+            border-radius: 8px;
+            padding: 24px;
             display: flex;
-            justify-content: center;
-            align-items: center;
+            gap: 20px;
+            align-items: flex-start;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
         }
 
-        .president-img-wrap img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .president-img-wrap i {
-            font-size: 4rem;
-            color: #ccc;
-        }
-
-        .president-title {
-            font-size: 0.8rem;
+        .club-card-tag {
+            display: inline-block;
+            font-size: 0.75rem;
             font-weight: 700;
-            text-transform: uppercase;
             letter-spacing: 1px;
-            color: var(--corlu-red);
+            color: var(--corlu-yellow);
+            text-transform: uppercase;
             margin-bottom: 5px;
         }
 
-        .president-name {
+        .club-card h4 {
             font-family: var(--font-display);
-            font-size: 1.6rem;
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .club-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .club-card .card-icon {
+            font-size: 2rem;
+            color: var(--corlu-yellow);
+            line-height: 1;
+        }
+
+        /* Başkan Mini Kart */
+        .president-mini-card .pres-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--corlu-red);
+            flex-shrink: 0;
+        }
+
+        .president-mini-card .pres-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .president-mini-card .pres-quote {
+            font-style: italic;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            font-size: 0.85rem !important;
+        }
+
+        /* Taraftar Grubu Butonu */
+        .fan-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: transparent;
+            border: 1px solid var(--corlu-yellow);
+            color: var(--corlu-yellow);
+            padding: 8px 18px;
+            font-family: var(--font-display);
+            font-size: 0.9rem;
             font-weight: 700;
             text-transform: uppercase;
+            border-radius: 4px;
+            margin-top: 12px;
+            transition: all 0.3s;
+        }
+
+        .fan-btn:hover {
+            background-color: var(--corlu-yellow);
             color: var(--brand-black);
-            margin-bottom: 15px;
         }
 
-        .president-quote {
-            font-style: italic;
+        .overlay-fan-btn {
+            margin-top: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Stadyum Büyük Görsel (input_file_6.png) */
+        .club-visual-card {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            height: 100%;
+            min-height: 400px;
+        }
+
+        .club-visual-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .club-visual-card:hover img {
+            transform: scale(1.03);
+        }
+
+        .visual-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px;
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0) 100%);
+            color: var(--brand-white);
+            z-index: 2;
+        }
+
+        .visual-overlay h4 {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            color: var(--corlu-yellow);
+        }
+
+        .visual-overlay p {
             font-size: 0.9rem;
-            color: #666;
-            line-height: 1.5;
-            border-top: 1px solid #e5e5e5;
-            padding-top: 15px;
+            color: var(--brand-white);
+            opacity: 0.9;
         }
 
-        /* --- 5. SEKSİYON (SİYAH): SPONSORLAR & FOOTER --- */
+        /* --- 6. SEKSİYON (SİYAH): SPONSORLAR & FOOTER --- */
         .sponsors-footer-section {
             background-color: var(--brand-black);
             color: var(--brand-white);
@@ -1071,13 +1158,11 @@
             .players-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
-            .history-grid {
+            .club-grid {
                 grid-template-columns: 1fr;
             }
-            .president-card {
-                align-self: center;
-                width: 100%;
-                max-width: 500px;
+            .club-visual-card {
+                min-height: 350px;
             }
         }
 
@@ -1845,46 +1930,88 @@
         </div>
     </section>
 
-    <!-- 4. SEKSİYON (BEYAZ): TARİHÇE VE KULÜP (BAŞKAN) -->
+    <!-- 4. SEKSİYON (BEYAZ): TARİHÇE -->
     <section class="history-white-section" id="tarihce">
-        <div class="history-grid">
+        <div class="history-content">
+            <h2>KULÜP TARİHÇEMİZ</h2>
+            <div class="history-text">
+                <p>
+                    1991 yılında mavi-beyaz renkleriyle <strong>Çorlu Sanayispor</strong> adıyla kurulan kulüp, 2014-15 sezonuna kadar yerel amatör liglerde mücadele etmiştir. 2014-15 sezonu öncesinde Çorluspor kulübü yönetimi ile anlaşma sağlayarak kulüp ismi <strong>Çorluspor 1947</strong> olarak değiştirilmiş, aynı sezon şampiyon olarak tarihinde ilk defa Bölgesel Amatör Lig'e yükselmiştir.
+                </p>
+                <p>
+                    4 sezon Bölgesel Amatör Lig'de mücadele ettikten sonra 2018-19 sezonunda ligi 12. sırada tamamlamasına rağmen statü gereğince Tekirdağ Süper Amatör Ligi'ne düşmüştür. 3 sezon Süper Amatör Lig'de mücadele eden kulüp, 2021-22 sezonunda yeniden Bölgesel Amatör Lig'e yükselmiştir.
+                </p>
+                <p>
+                    2023-24 sezonunda ligi lider tamamlayan Çorluspor 1947, ligin bitimine 1 hafta kala şampiyonluğunu ilan ederek TFF 3. Lig'e yükselmiştir.
+                </p>
+                <p>
+                    2025-26 sezonunda TFF 3. Lig'de mücadele eden kulüp, ligi üst sıralarda tamamlayarak play-off oynamaya hak kazanmış ve play-off finalinde Malatya Yeşilyurtspor'u 1-0 mağlup ederek tarihinde ilk kez **TFF 2. Lig**'e yükselmiştir.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. SEKSİYON (SİYAH): KULÜP BİLGİLERİ, STADYUM & TARAFTAR -->
+    <section class="club-info-section" id="kulup">
+        <h3 class="widget-title" style="border-bottom-color: var(--brand-black); margin-bottom: 10px; color: var(--brand-white);">
+            <span>KULÜP BİLGİLERİ & STADYUM</span>
+        </h3>
+        <div class="club-grid">
             
-            <!-- Sol Kolon: Yeni Doğru Tarihçe Bilgisi -->
-            <div class="history-content">
-                <h2>KULÜP TARİHÇEMİZ</h2>
-                <div class="history-text">
-                    <p>
-                        1991 yılında mavi-beyaz renkleriyle <strong>Çorlu Sanayispor</strong> adıyla kurulan kulüp, 2014-15 sezonuna kadar yerel amatör liglerde mücadele etmiştir. 2014-15 sezonu öncesinde Çorluspor kulübü yönetimi ile anlaşma sağlayarak kulüp ismi <strong>Çorluspor 1947</strong> olarak değiştirilmiş, aynı sezon şampiyon olarak tarihinde ilk defa Bölgesel Amatör Lig'e yükselmiştir.
-                    </p>
-                    <p>
-                        4 sezon Bölgesel Amatör Lig'de mücadele ettikten sonra 2018-19 sezonunda ligi 12. sırada tamamlamasına rağmen statü gereğince Tekirdağ Süper Amatör Ligi'ne düşmüştür. 3 sezon Süper Amatör Lig'de mücadele eden kulüp, 2021-22 sezonunda yeniden Bölgesel Amatör Lig'e yükselmiştir.
-                    </p>
-                    <p>
-                        2023-24 sezonunda ligi lider tamamlayan Çorluspor 1947, ligin bitimine 1 hafta kala şampiyonluğunu ilan ederek TFF 3. Lig'e yükselmiştir.
-                    </p>
-                    <p>
-                        2025-26 sezonunda TFF 3. Lig'de mücadele eden kulüp, ligi üst sıralarda tamamlayarak play-off oynamaya hak kazanmış ve play-off finalinde Malatya Yeşilyurtspor'u 1-0 mağlup ederek tarihinde ilk kez **TFF 2. Lig**'e yükselmiştir.
-                    </p>
+            <!-- Sol Kolon: Bilgiler & Kartlar -->
+            <div class="club-details-cards">
+                
+                <!-- Kart 1: Başkan (Ahmet Bayram) -->
+                <div class="club-card president-mini-card">
+                    <div class="pres-avatar">
+                        <img src="./images/president.jpg" alt="Kulüp Başkanı Ahmet Bayram">
+                    </div>
+                    <div class="pres-info">
+                        <span class="club-card-tag">KULÜP BAŞKANI</span>
+                        <h4>Ahmet Bayram</h4>
+                        <p class="pres-quote">"Doğru adımlar, doğru yönetim ve arkamızdaki büyük Çorlu taraftarı sayesinde TFF 2. Lig'e yükseldik. Çorluspor 1947 durmayacak, zirveye olan yolculuğumuz devam edecek."</p>
+                    </div>
                 </div>
+
+                <!-- Kart 2: Stadyum Bilgileri -->
+                <div class="club-card">
+                    <div class="card-icon"><i class="fas fa-landmark"></i></div>
+                    <div class="card-text">
+                        <span class="club-card-tag">STADYUM</span>
+                        <h4>General Basri Saran Stadyumu</h4>
+                        <p><strong>Kapasite:</strong> 5.300 Seyirci</p>
+                        <p><strong>Adres:</strong> Kazımiye, Salih Omurtak Cd. No:128, 59860 Çorlu/Tekirdağ</p>
+                    </div>
+                </div>
+
+                <!-- Kart 3: Taraftar Grubu -->
+                <div class="club-card">
+                    <div class="card-icon"><i class="fas fa-bullhorn"></i></div>
+                    <div class="card-text">
+                        <span class="club-card-tag">TARAFTAR GRUBU</span>
+                        <h4>Asi Şimşekler</h4>
+                        <p>Çorluspor 1947'nin her şartta yanında olan, tribünlerin ateşleyici ve itici gücü.</p>
+                    </div>
+                </div>
+
             </div>
 
-            <!-- Sağ Kolon: Başkan Profil Kartı -->
-            <div class="president-card" id="kulup">
-                <div class="president-img-wrap">
-                    <!-- Başkan fotoğrafı: images/president.jpg -->
-                    <img src="./images/president.jpg" alt="Kulüp Başkanı">
+            <!-- Sağ Kolon: Taraftar Grubu Fotoğrafı (asisimsekler.png) -->
+            <div class="club-visual-card">
+                <img src="./images/asisimsekler.png" alt="Asi Şimşekler taraftar fotoğrafı" onerror="this.style.display='none'; this.parentElement.style.backgroundColor='#111';">
+                <div class="visual-overlay">
+                    <h4>Asi Şimşekler Taraftar Fotoğrafı</h4>
+                    <p>Çorluspor 1947'nin resmi taraftar grubu</p>
+                    <a href="https://www.instagram.com/asisimsekler/" target="_blank" class="fan-btn overlay-fan-btn">
+                        <i class="fab fa-instagram"></i> @asisimsekler
+                    </a>
                 </div>
-                <span class="president-title">KULÜP BAŞKANI</span>
-                <h3 class="president-name">Ahmet Bayram</h3>
-                <p class="president-quote">
-                    "Doğru adımlar, doğru yönetim ve arkamızdaki büyük Çorlu taraftarı sayesinde TFF 2. Lig'e yükseldik. Çorluspor 1947 durmayacak, zirveye olan yolculuğumuz devam edecek."
-                </p>
             </div>
 
         </div>
     </section>
 
-    <!-- 5. SEKSİYON (SİYAH): SPONSORLAR & FOOTER -->
+    <!-- 6. SEKSİYON (SİYAH): SPONSORLAR & FOOTER -->
     <div class="sponsors-footer-section">
         
         <!-- Sponsorlar Alanı -->
