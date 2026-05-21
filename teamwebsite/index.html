@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Çorluspor 1947 Resmi Web Sitesi</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --corlu-red: #CD0000; /* Çorluspor Kırmızı */
+            --corlu-yellow: #FFEF3C; /* Çorluspor Sarı */
+            --brand-black: #000000;
+            --brand-dark-grey: #111111;
+            --brand-mid-grey: #1c1c1c;
+            --brand-light-grey: #262626;
+            --brand-white: #ffffff;
+            --text-muted: #999999;
+            --font-display: 'Oswald', sans-serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--brand-black);
+            color: var(--brand-white);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: all 0.2s ease-in-out;
+        }
+
+        /* --- TOP UTILITY BAR --- */
+        .top-utility-bar {
+            background-color: #0d0d0d;
+            border-bottom: 1px solid #1a1a1a;
+            padding: 0 5%;
+            height: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            z-index: 1000;
+            position: relative;
+        }
+
+        .utility-left {
+            display: flex;
+            gap: 20px;
+            height: 100%;
+            align-items: center;
+        }
+
+        .utility-left a {
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            height: 100%;
+            border-bottom: 2px solid transparent;
+        }
+
+        .utility-left a:hover, .utility-left a.active {
+            color: var(--brand-white);
+            border-bottom-color: var(--corlu-red);
+        }
+
+        .utility-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            color: var(--text-muted);
+        }
+
+        .utility-right a:hover {
+            color: var(--brand-white);
+        }
+
+        /* --- HEADER & NAVIGATION --- */
+        header {
+            background-color: var(--brand-black);
+            border-bottom: 4px solid var(--corlu-red);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            height: 90px;
+        }
+
+        .logo-wrap img {
+            height: 75px;
+            width: auto;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-wrap img:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            height: 100%;
+            align-items: center;
+        }
+
+        .nav-menu li {
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 0 20px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            letter-spacing: 0.5px;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: var(--corlu-yellow);
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: var(--corlu-yellow);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-menu li:hover a::after {
+            transform: scaleX(1);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .action-btn {
+            background: none;
+            border: none;
+            color: var(--brand-white);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .action-btn:hover {
+            color: var(--corlu-yellow);
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        /* --- SEARCH PANEL --- */
+        .search-panel {
+            background-color: var(--brand-dark-grey);
+            border-bottom: 1px solid var(--corlu-red);
+            padding: 20px 5%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .search-panel.active {
+            display: flex;
+        }
+
+        .search-panel input {
+            width: 60%;
+            max-width: 600px;
+            background-color: var(--brand-black);
+            border: 1px solid var(--brand-light-grey);
+            color: #fff;
+            padding: 12px 20px;
+            font-family: inherit;
+            outline: none;
+        }
+
+        .search-panel input:focus {
+            border-color: var(--corlu-yellow);
+        }
+
+        /* --- HERO SLIDER (DASHBOARD) --- */
+        .hero-slider-container {
+            position: relative;
+            height: 60vh;
+            min-height: 400px;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+            display: flex;
+            align-items: flex-end;
+            padding: 0 5% 80px 5%;
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .slide-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            z-index: 1;
+        }
+
+        .slide-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.95) 100%);
+        }
+
+        .slide-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .slide-tag {
+            background-color: var(--corlu-red);
+            color: var(--brand-white);
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+            font-weight: 700;
+            padding: 5px 15px;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 15px;
+            clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+        }
+
+        .slide-title {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+        }
+
+        .btn-hull {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--corlu-red);
+            color: var(--brand-white);
+            padding: 12px 24px;
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            clip-path: polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%);
+        }
+
+        .btn-hull:hover {
+            background-color: var(--corlu-yellow);
+            color: var(--brand-black);
+        }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 30px;
+            left: 5%;
+            z-index: 10;
+            display: flex;
+            gap: 12px;
+        }
+
+        .dot {
+            width: 50px;
+            height: 4px;
+            background-color: rgba(255,255,255,0.3);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .dot-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0;
+            background-color: var(--corlu-yellow);
+        }
+
+        .dot.active .dot-fill {
+            width: 100%;
+            transition: width 5s linear;
+        }
+
+        /* --- ORTA ÜST MAÇ KART BÖLÜMÜ (GERİ SAYIM SAYACI) --- */
+        .middle-match-card-container {
+            background-color: var(--brand-black);
+            padding: 20px 5% 0 5%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .card__content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1100px;
+            padding: 15px 30px;
+            gap: 20px;
+            background-color: var(--brand-dark-grey);
+            border-left: 5px solid var(--corlu-red);
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .card__crest {
+            height: 70px;
+            width: 70px;
+            object-fit: contain;
+        }
+
+        .card__meta {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            flex: 1;
+        }
+
+        .card__meta-team {
+            font-weight: 800;
+            font-size: 0.7rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--corlu-yellow);
+        }
+
+        .card__meta-name {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            line-height: 1.1;
+            color: var(--brand-white);
+        }
+
+        .card__meta-venue {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Geri Sayım Sayacı */
+        .card__timer {
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+        }
+
+        .timer__unit-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 60px;
+            background-color: var(--brand-mid-grey);
+            padding: 8px 10px;
+            border-radius: 6px;
+            border-bottom: 2px solid var(--corlu-yellow);
+        }
+
+        .card__timer-value {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--brand-white);
+            line-height: 1;
+        }
+
+        .card__timer-label, .opacity-70 {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-top: 4px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- 1. SEKSİYON (SİYAH): PUAN DURUMU --- */
+        .match-standings-section {
+            background-color: var(--brand-black);
+            padding: 40px 5% 60px 5%;
+            display: grid;
+            grid-template-columns: 1.5fr 1.5fr;
+            gap: 40px;
+        }
+
+        .widget-title {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--corlu-red);
+            padding-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .standings-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .standings-table th, .standings-table td {
+            padding: 12px;
+            text-align: center;
+        }
+
+        .standings-table th {
+            font-family: var(--font-display);
+            text-transform: uppercase;
+            color: var(--text-muted);
+            border-bottom: 2px solid var(--brand-light-grey);
+        }
+
+        .standings-table td {
+            border-bottom: 1px solid var(--brand-light-grey);
+        }
+
+        .standings-table tr.highlighted {
+            background-color: rgba(205, 0, 0, 0.15);
+            font-weight: 700;
+            border-left: 3px solid var(--corlu-red);
+        }
+
+        .team-td-name {
+            text-align: left !important;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .team-td-name img {
+            height: 24px;
+        }
+
+        .secondary-fixture-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .mini-fixture-card {
+            background-color: var(--brand-dark-grey);
+            padding: 15px 20px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mini-team-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+        }
+
+        .mini-team-info img {
+            height: 30px;
+        }
+
+        /* --- 2. SEKSİYON (KIRMIZI): ÇORLUSPOR TV (YOUTUBE ALANI) --- */
+        .media-orange-section {
+            background-color: var(--corlu-red);
+            color: var(--brand-white);
+            padding: 80px 5%;
+        }
+
+        .media-intro {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 30px;
+            max-width: 900px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .youtube-video-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .media-card {
+            background-color: var(--brand-black);
+            color: var(--brand-white);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            cursor: pointer;
+        }
+
+        .media-card-img-wrap {
+            position: relative;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .media-card-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.85;
+            transition: transform 0.4s ease, opacity 0.4s ease;
+        }
+
+        .media-card:hover .media-card-img-wrap img {
+            transform: scale(1.04);
+            opacity: 0.95;
+        }
+
+        .play-overlay-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 55px;
+            height: 55px;
+            background-color: var(--brand-white);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--brand-black);
+            font-size: 1.2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            opacity: 0.85;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        .media-card:hover .play-overlay-btn {
+            transform: translate(-50%, -50%) scale(1.1);
+            opacity: 1;
+            background-color: var(--corlu-yellow);
+        }
+
+        .duration-badge {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background-color: rgba(0,0,0,0.85);
+            color: var(--brand-white);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .category-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: rgba(0,0,0,0.65);
+            color: var(--brand-white);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .media-card-body {
+            padding: 24px;
+            background-color: var(--brand-dark-grey);
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            border-top: 1px solid var(--brand-light-grey);
+        }
+
+        .media-card-title {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            text-transform: uppercase;
+            line-height: 1.35;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .media-card-date {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: auto;
+            font-weight: 600;
+        }
+
+        .media-tabs {
+            display: flex;
+            gap: 25px;
+            border-bottom: 2px solid rgba(255,255,255,0.2);
+            padding-bottom: 15px;
+            margin-bottom: 35px;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .media-tabs a {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.7);
+            display: flex;
+            align-items: center;
+        }
+
+        .media-tabs a:hover, .media-tabs a.active {
+            color: var(--corlu-yellow);
+        }
+
+        /* --- 3. SEKSİYON (BEYAZ): TARİHÇE VE BAŞKAN --- */
+        .history-white-section {
+            background-color: var(--brand-white);
+            color: var(--brand-black);
+            padding: 80px 5%;
+        }
+
+        .history-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 50px;
+        }
+
+        .history-content h2 {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            position: relative;
+            color: var(--brand-black);
+        }
+
+        .history-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background-color: var(--corlu-red);
+        }
+
+        .history-text {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #333333;
+            text-align: justify;
+        }
+
+        .history-text p {
+            margin-bottom: 15px;
+        }
+
+        /* Başkan Profil Kartı */
+        .president-card {
+            background-color: #f9f9f9;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            align-self: start;
+        }
+
+        .president-img-wrap {
+            width: 200px;
+            height: 200px;
+            max-width: 40vw;
+            max-height: 40vw;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid var(--corlu-red);
+            margin-bottom: 20px;
+            background-color: #eee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .president-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .president-img-wrap i {
+            font-size: 4rem;
+            color: #ccc;
+        }
+
+        .president-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--corlu-red);
+            margin-bottom: 5px;
+        }
+
+        .president-name {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--brand-black);
+            margin-bottom: 15px;
+        }
+
+        .president-quote {
+            font-style: italic;
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.5;
+            border-top: 1px solid #e5e5e5;
+            padding-top: 15px;
+        }
+
+        /* --- 4. SEKSİYON (SİYAH): SPONSORLAR & FOOTER --- */
+        .sponsors-footer-section {
+            background-color: var(--brand-black);
+            color: var(--brand-white);
+        }
+
+        .sponsors-area {
+            padding: 60px 5%;
+            border-bottom: 1px solid var(--brand-mid-grey);
+            text-align: center;
+        }
+
+        .sponsor-title {
+            font-family: var(--font-display);
+            text-transform: uppercase;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .sponsor-tier {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 60px;
+        }
+
+        .sponsor-tier img {
+            max-height: 80px;
+            max-width: 250px;
+            object-fit: contain;
+            opacity: 0.8;
+            transition: opacity 0.3s, filter 0.3s;
+        }
+
+        .sponsor-tier img:hover {
+            opacity: 1;
+            filter: none;
+        }
+
+        footer {
+            padding: 80px 5% 30px 5%;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo img {
+            height: 90px;
+            margin-bottom: 20px;
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 30px;
+            height: 2px;
+            background-color: var(--corlu-yellow);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .footer-links a:hover {
+            color: var(--corlu-yellow);
+            padding-left: 5px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 15px;
+        }
+
+        .newsletter-form input {
+            background-color: var(--brand-mid-grey);
+            border: 1px solid var(--brand-light-grey);
+            color: #fff;
+            padding: 12px;
+            width: 100%;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .newsletter-form button {
+            background-color: var(--corlu-yellow);
+            border: none;
+            padding: 0 20px;
+            color: var(--brand-black);
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--brand-mid-grey);
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .footer-social-icons a {
+            margin-left: 15px;
+            font-size: 1.15rem;
+        }
+
+        .footer-social-icons a:hover {
+            color: var(--corlu-yellow);
+        }
+
+        /* --- RESPONSIVE TASARIM --- */
+        @media (max-width: 1200px) {
+            .youtube-video-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .history-grid {
+                grid-template-columns: 1fr;
+            }
+            .president-card {
+                align-self: center;
+                width: 100%;
+                max-width: 500px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .nav-menu {
+                display: none;
+            }
+            .menu-toggle {
+                display: block;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            .match-standings-section {
+                grid-template-columns: 1fr;
+            }
+            .card__content {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 20px;
+            }
+            .card__timer {
+                width: 100%;
+                justify-content: flex-start;
+                margin-top: 15px;
+            }
+            .footer-top {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .top-utility-bar {
+                display: none;
+            }
+            .youtube-video-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-top {
+                grid-template-columns: 1fr;
+            }
+            .slide-title {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- UTILITY NAV (TOP BAR) -->
+    <div class="top-utility-bar">
+        <div class="utility-left">
+            <a href="#" class="active">Ana Sayfa</a>
+            <a href="#">Haberler</a>
+            <a href="#">Biletler</a>
+            <a href="#">Mağaza</a>
+        </div>
+        <div class="utility-right">
+            <!-- Sosyal Medya Bağlantıları -->
+            <a href="https://www.instagram.com/corluspor1947sk" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://x.com/corluspor1947" target="_blank" title="Twitter (X)"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.youtube.com/@corluspor1947" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.facebook.com/corluspor1947" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        </div>
+    </div>
+
+    <!-- MAIN NAV -->
+    <header>
+        <div class="main-header">
+            <div class="logo-wrap">
+                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/tr/7/77/%C3%87orluspor.png" alt="Çorluspor Logosu"></a>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="#">HABERLER</a></li>
+                <li><a href="#">FİKSTÜR & MAÇLAR</a></li>
+                <li><a href="#">TAKIMIMIZ</a></li>
+                <li><a href="#">BİLETLER</a></li>
+                <li><a href="#">Tarihçemiz</a></li>
+                <li><a href="#">KULÜP</a></li>
+            </ul>
+
+            <div class="header-actions">
+                <button class="action-btn" id="searchToggleBtn" title="Arama"><i class="fas fa-search"></i></button>
+                <button class="action-btn menu-toggle" id="mobileMenuBtn" title="Menü"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+
+        <!-- Arama Paneli -->
+        <div class="search-panel" id="searchPanel">
+            <input type="text" placeholder="Kulüp genelinde ara: oyuncular, biletler, haberler...">
+            <button class="btn-hull" style="padding: 10px 20px;"><i class="fas fa-search"></i> Ara</button>
+        </div>
+    </header>
+
+    <!-- HERO SLIDER (DASHBOARD) -->
+    <div class="hero-slider-container">
+        
+        <!-- Slayt 1: Şampiyonluk Posteri (input_file_3.png) -->
+        <div class="slide active">
+            <div class="slide-bg" style="background-image: url('./input_file_3.png');"></div>
+            <div class="slide-content">
+                <span class="slide-tag">TARİHİ BAŞARI</span>
+                <h2 class="slide-title">Şampiyon Çorluspor 1947 TFF 2. Lig'de!</h2>
+                <a href="https://www.youtube.com/@corluspor1947" target="_blank" class="btn-hull">Takımı Destekle</a>
+            </div>
+        </div>
+
+        <!-- Slayt 2: Kupa Kaldırma Sahası (input_file_2.png) -->
+        <div class="slide">
+            <div class="slide-bg" style="background-image: url('./input_file_2.png');"></div>
+            <div class="slide-content">
+                <span class="slide-tag">PLAY-OFF BİRİNCİSİ</span>
+                <h2 class="slide-title">Malatya Yeşilyurtspor Karşısında Kupa Bizim!</h2>
+                <a href="https://www.youtube.com/@corluspor1947" target="_blank" class="btn-hull">Kutlamaları İzle</a>
+            </div>
+        </div>
+
+        <!-- Slider Progress / Dots -->
+        <div class="slider-dots">
+            <div class="dot active" data-slide="0"><div class="dot-fill"></div></div>
+            <div class="dot" data-slide="1"><div class="dot-fill"></div></div>
+        </div>
+    </div>
+
+    <!-- ORTA ÜST MAÇ KART BÖLÜMÜ (GERİ SAYIM SAYACI) -->
+    <div class="middle-match-card-container">
+        <div class="card__content">
+            <!-- Rakip Crest (Altınordu Temsili) -->
+            <img class="card__crest" src="https://upload.wikimedia.org/wikipedia/tr/1/15/Sunderland_AFC_logo.png" style="filter: hue-rotate(240deg);" alt="Altınordu">
+            
+            <!-- Maç Bilgileri -->
+            <div class="card__meta">
+                <p class="card__meta-team">A TAKIM - TFF 2. LİG</p>
+                <h3 class="card__meta-name">Altınordu Mücadelesi</h3>
+                <p class="card__meta-venue">Çorlu General Basri Saran Stadyumu</p>
+            </div>
+            
+            <!-- Canlı Geri Sayım Widget'ı -->
+            <section class="card__timer">
+                <div class="timer__unit-wrapper">
+                    <p class="card__timer-value" id="timer-days">02</p>
+                    <p class="opacity-70">Days</p>
+                </div>
+                <div class="timer__unit-wrapper">
+                    <p class="card__timer-value" id="timer-hours">04</p>
+                    <p class="opacity-70">Hours</p>
+                </div>
+                <div class="timer__unit-wrapper">
+                    <p class="card__timer-value" id="timer-mins">54</p>
+                    <p class="opacity-70">Mins</p>
+                </div>
+                <div class="timer__unit-wrapper">
+                    <p class="card__timer-value" id="timer-secs">32</p>
+                    <p class="opacity-70">Secs</p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- 1. SEKSİYON (SİYAH): MAÇ MERKEZİ & PUAN DURUMU -->
+    <section class="match-standings-section">
+        
+        <!-- Gelecek Maçlar Listesi -->
+        <div>
+            <h3 class="widget-title">
+                <span>GELECEK MAÇLARIMIZ</span>
+                <a href="#" style="font-size: 0.85rem; color: var(--corlu-yellow);">TÜM FİKSTÜR <i class="fas fa-chevron-right"></i></a>
+            </h3>
+            
+            <div class="secondary-fixture-list">
+                <div class="mini-fixture-card">
+                    <div class="mini-team-info">
+                        <img src="https://upload.wikimedia.org/wikipedia/tr/7/77/%C3%87orluspor.png" alt="Çorlu">
+                        <span>Çorluspor 1947</span>
+                    </div>
+                    <span style="font-weight: 700; color: var(--corlu-yellow);">VS</span>
+                    <div class="mini-team-info">
+                        <img src="https://upload.wikimedia.org/wikipedia/tr/b/bf/Coventry_City_FC_logo.png" alt="Karacabey">
+                        <span>Karacabey Bld.</span>
+                    </div>
+                    <span style="font-size: 0.8rem; color: var(--text-muted);">03 Eki, 16:00</span>
+                </div>
+
+                <div class="mini-fixture-card">
+                    <div class="mini-team-info">
+                        <img src="https://upload.wikimedia.org/wikipedia/tr/f/f9/Burnley_FC_logo.png" alt="Bucaspor">
+                        <span>Bucaspor 1928</span>
+                    </div>
+                    <span style="font-weight: 700; color: var(--corlu-yellow);">VS</span>
+                    <div class="mini-team-info">
+                        <img src="https://upload.wikimedia.org/wikipedia/tr/7/77/%C3%87orluspor.png" alt="Çorlu">
+                        <span>Çorluspor 1947</span>
+                    </div>
+                    <span style="font-size: 0.8rem; color: var(--text-muted);">10 Eki, 16:00</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Puan Durumu -->
+        <div>
+            <h3 class="widget-title">
+                <span>PUAN DURUMU</span>
+                <span style="font-size: 0.85rem; color: var(--text-muted);">TFF 2. LİG</span>
+            </h3>
+            
+            <table class="standings-table">
+                <thead>
+                    <tr>
+                        <th style="width: 50px;">SIRA</th>
+                        <th style="text-align: left;">TAKIM</th>
+                        <th>O</th>
+                        <th>G</th>
+                        <th>M</th>
+                        <th>AV</th>
+                        <th>P</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="highlighted">
+                        <td>1</td>
+                        <td class="team-td-name">
+                            <img src="https://upload.wikimedia.org/wikipedia/tr/7/77/%C3%87orluspor.png" alt="Çorluspor">
+                            Çorluspor 1947
+                        </td>
+                        <td>4</td>
+                        <td>3</td>
+                        <td>0</td>
+                        <td>+6</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td class="team-td-name">
+                            <img src="https://upload.wikimedia.org/wikipedia/tr/b/bf/Coventry_City_FC_logo.png" alt="Altınordu">
+                            Altınordu
+                        </td>
+                        <td>4</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>+3</td>
+                        <td>7</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td class="team-td-name">
+                            <img src="https://upload.wikimedia.org/wikipedia/tr/f/f9/Burnley_FC_logo.png" alt="Bucaspor">
+                            Bucaspor 1928
+                        </td>
+                        <td>4</td>
+                        <td>2</td>
+                        <td>1</td>
+                        <td>+2</td>
+                        <td>7</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 2. SEKSİYON (KIRMIZI): ÇORLUSPOR TV (YOLCULUK RESİMLERİ) -->
+    <section class="media-orange-section">
+        <h3 class="widget-title" style="border-bottom-color: var(--brand-white); margin-bottom: 10px; color: var(--brand-white);">
+            <span>ÇORLUSPOR TV / MEDYA</span>
+        </h3>
+        <p class="media-intro">Nesine 3. Lig'den TFF 2. Lig'e uzanan bu kutlu yürüyüşün en özel anları, kupa zaferi coşkusu ve şampiyonluk öyküsü Çorluspor TV'de.</p>
+
+        <!-- YouTube Tarzı Gerçek Görselli Kart Grid'i -->
+        <div class="youtube-video-grid">
+            
+            <!-- Video 1: Play-off Kupa Töreni (input_file_2.png) -->
+            <div class="media-card" onclick="window.open('https://www.youtube.com/@corluspor1947', '_blank')">
+                <div class="media-card-img-wrap">
+                    <img src="./input_file_2.png" alt="Play-off Kupa Töreni">
+                    <div class="play-overlay-btn" style="width: 45px; height: 45px; font-size: 1rem;"><i class="fas fa-play"></i></div>
+                    <span class="duration-badge">15:40</span>
+                    <span class="category-badge"><i class="fas fa-trophy"></i> Play-off Şampiyonu</span>
+                </div>
+                <div class="media-card-body">
+                    <h4 class="media-card-title">Tarih Yazdık! Play-Off Finali Kupa Kaldırma Töreni ve Saha İçi Sevinçler</h4>
+                    <span class="media-card-date"><i class="far fa-eye"></i> 4.8 B görüntüleme • 3 gün önce</span>
+                </div>
+            </div>
+
+            <!-- Video 2: Şampiyonluk Kadro Tanıtımı (input_file_3.png) -->
+            <div class="media-card" onclick="window.open('https://www.youtube.com/@corluspor1947', '_blank')">
+                <div class="media-card-img-wrap">
+                    <img src="./input_file_3.png" alt="Şampiyon Kadro">
+                    <div class="play-overlay-btn" style="width: 45px; height: 45px; font-size: 1rem;"><i class="fas fa-play"></i></div>
+                    <span class="duration-badge">23:15</span>
+                    <span class="category-badge"><i class="fas fa-users"></i> Şampiyon Belgeseli</span>
+                </div>
+                <div class="media-card-body">
+                    <h4 class="media-card-title">ŞAMPİYON ÇORLUSPOR 1947: Teknik Ekip ve Oyuncu Kadromuzun Sezon Hikayesi</h4>
+                    <span class="media-card-date"><i class="far fa-eye"></i> 10.2 B görüntüleme • 1 hafta önce</span>
+                </div>
+            </div>
+
+            <!-- Video 3: Saha İçi Kutlama Detayları (input_file_4.png) -->
+            <div class="media-card" onclick="window.open('https://www.youtube.com/@corluspor1947', '_blank')">
+                <div class="media-card-img-wrap">
+                    <img src="./input_file_4.png" alt="Kutlamalar Yakın Plan">
+                    <div class="play-overlay-btn" style="width: 45px; height: 45px; font-size: 1rem;"><i class="fas fa-play"></i></div>
+                    <span class="duration-badge">08:12</span>
+                    <span class="category-badge"><i class="fas fa-camera"></i> Özel Kamera</span>
+                </div>
+                <div class="media-card-body">
+                    <h4 class="media-card-title">Yükseliş Coşkusu: TFF 2. Lig Bileti Sonrası Soyunma Odası ve Tribün Kutlamaları</h4>
+                    <span class="media-card-date"><i class="far fa-eye"></i> 3.5 B görüntüleme • 4 gün önce</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 3. SEKSİYON (BEYAZ): TARİHÇE VE BAŞKAN MESAJI -->
+    <section class="history-white-section">
+        <div class="history-grid">
+            
+            <!-- Sol Kolon: Yeni Doğru Tarihçe Bilgisi -->
+            <div class="history-content">
+                <h2>KULÜP TARİHÇEMİZ</h2>
+                <div class="history-text">
+                    <p>
+                        1991 yılında mavi-beyaz renkleriyle <strong>Çorlu Sanayispor</strong> adıyla kurulan kulüp, 2014-15 sezonuna kadar yerel amatör liglerde mücadele etmiştir. 2014-15 sezonu öncesinde Çorluspor kulübü yönetimi ile anlaşma sağlayarak kulüp ismi <strong>Çorluspor 1947</strong> olarak değiştirilmiş, aynı sezon şampiyon olarak tarihinde ilk defa Bölgesel Amatör Lig'e yükselmiştir.
+                    </p>
+                    <p>
+                        4 sezon Bölgesel Amatör Lig'de mücadele ettikten sonra 2018-19 sezonunda ligi 12. sırada tamamlamasına rağmen statü gereğince Tekirdağ Süper Amatör Ligi'ne düşmüştür. 3 sezon Süper Amatör Lig'de mücadele eden kulüp, 2021-22 sezonunda yeniden Bölgesel Amatör Lig'e yükselmiştir.
+                    </p>
+                    <p>
+                        2023-24 sezonunda ligi lider tamamlayan Çorluspor 1947, ligin bitimine 1 hafta kala şampiyonluğunu ilan ederek TFF 3. Lig'e yükselmiştir.
+                    </p>
+                    <p>
+                        2025-26 sezonunda TFF 3. Lig'de mücadele eden kulüp, ligi üst sıralarda tamamlayarak play-off oynamaya hak kazanmış ve play-off finalinde Malatya Yeşilyurtspor'u 1-0 mağlup ederek tarihinde ilk kez **TFF 2. Lig**'e yükselmiştir.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Sağ Kolon: Başkan Profil Kartı -->
+            <div class="president-card">
+                    <div class="president-img-wrap">
+                        <!-- Başkan fotoğrafı: images/president.jpg olarak yerleştirin -->
+                        <img src="./images/president.jpg" alt="Kulüp Başkanı">
+                    </div>
+                <span class="president-title">KULÜP BAŞKANI</span>
+                <h3 class="president-name">Ahmet Bayram</h3>
+                <p class="president-quote">
+                    "Doğru adımlar, doğru yönetim ve arkamızdaki büyük Çorlu taraftarı sayesinde TFF 2. Lig'e yükseldik. Çorluspor 1947 durmayacak, zirveye olan yolculuğumuz devam edecek."
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 4. SEKSİYON (SİYAH): SPONSORLAR & FOOTER -->
+    <div class="sponsors-footer-section">
+        
+        <!-- Sponsorlar Alanı -->
+        <section class="sponsors-area">
+            <div class="sponsor-title">RESMİ SPONSORLARIMIZ</div>
+            <div class="sponsor-tier">
+                <!-- Sponsor 1: Baykar Lojistik -->
+                <a href="https://baykarlojistik.com.tr" target="_blank">
+                    <img src="https://baykarlojistik.com.tr/images/baykar_logo.PNG" alt="Baykar Lojistik">
+                </a>
+                <!-- Sponsor 2: İkas -->
+                <a href="#" target="_blank">
+                    <img src="https://cdn.myikas.com/images/theme-images/93157ff4-e7ca-421a-a8ff-a7d11127c8cd/image_720.webp" alt="İkas Sponsor">
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-top">
+                <div class="footer-col footer-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/tr/7/77/%C3%87orluspor.png" alt="Çorluspor">
+                    <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; margin-top: 15px;">
+                        Çorluspor 1947 Resmi Web Sitesidir. Sarı kırmızılı renklerle TFF 2. Lig sahnesindeyiz.
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4>HIZLI LINKLER</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Bilet Satış Koşulları</a></li>
+                        <li><a href="#">Stadyum Kuralları</a></li>
+                        <li><a href="#">Kulüp Üyelik Formu</a></li>
+                        <li><a href="#">Gizlilik ve KVKK Sözleşmesi</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>KULÜP</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Kulüp Tarihçesi</a></li>
+                        <li><a href="#">Yönetim Kurulu</a></li>
+                        <li><a href="#">İletişim & Destek</a></li>
+                        <li><a href="#">Tesislerimiz</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>HABERDAR OLUN</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6;">
+                        Maç programları, bilet indirimleri ve kulüp duyuruları için e-posta listemize kaydolun.
+                    </p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="E-posta adresinizi yazın...">
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Çorluspor 1947 Kulübü. Tüm Hakları Saklıdır.</p>
+                <div class="footer-social-icons">
+                    <a href="https://www.instagram.com/corluspor1947sk" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://x.com/corluspor1947" target="_blank" title="Twitter (X)"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.youtube.com/@corluspor1947" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.facebook.com/corluspor1947" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- SCRIPT TABANLI ETKİLEŞİMLER -->
+    <script>
+        // --- GERİ SAYIM SAYACI (DİNAMİK JAVASCRIPT) ---
+        // Maç saatine geri sayım simülasyonu (2 gün 4 saat 54 dakika sonrası)
+        const countdownDate = new Date().getTime() + (2 * 24 * 60 * 60 * 1000) + (4 * 60 * 60 * 1000) + (54 * 60 * 1000);
+
+        const countdownInterval = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("timer-days").innerText = String(days).padStart(2, '0');
+            document.getElementById("timer-hours").innerText = String(hours).padStart(2, '0');
+            document.getElementById("timer-mins").innerText = String(minutes).padStart(2, '0');
+            document.getElementById("timer-secs").innerText = String(seconds).padStart(2, '0');
+
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById("timer-days").innerText = "00";
+                document.getElementById("timer-hours").innerText = "00";
+                document.getElementById("timer-mins").innerText = "00";
+                document.getElementById("timer-secs").innerText = "00";
+            }
+        }, 1000);
+
+        // --- ARAMA PANELİ TETİKLEME ---
+        const searchToggleBtn = document.getElementById('searchToggleBtn');
+        const searchPanel = document.getElementById('searchPanel');
+
+        searchToggleBtn.addEventListener('click', () => {
+            searchPanel.classList.toggle('active');
+            if (searchPanel.classList.contains('active')) {
+                searchPanel.querySelector('input').focus();
+            }
+        });
+
+        // --- OTOMATİK KAYAN MANŞET (DASHBOARD SLIDER) ---
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        let currentSlide = 0;
+        let slideInterval;
+        const slideDuration = 5000;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+            
+            const activeDotFill = dots[index].querySelector('.dot-fill');
+            if (activeDotFill) {
+                activeDotFill.style.width = '0';
+                setTimeout(() => {
+                    activeDotFill.style.width = '100%';
+                }, 50);
+            }
+
+            currentSlide = index;
+        }
+
+        function nextSlide() {
+            let nextIndex = (currentSlide + 1) % slides.length;
+            showSlide(nextIndex);
+        }
+
+        function startSlideShow() {
+            dots[currentSlide].querySelector('.dot-fill').style.width = '100%';
+            slideInterval = setInterval(nextSlide, slideDuration);
+        }
+
+        function resetSlideShow() {
+            clearInterval(slideInterval);
+            startSlideShow();
+        }
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showSlide(index);
+                resetSlideShow();
+            });
+        });
+
+        startSlideShow();
+
+        // --- MOBİL MENÜ SİMÜLASYONU ---
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.querySelector('.nav-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            if (navMenu.style.display === 'flex') {
+                navMenu.style.display = 'none';
+            } else {
+                navMenu.style.display = 'flex';
+                navMenu.style.flexDirection = 'column';
+                navMenu.style.position = 'absolute';
+                navMenu.style.top = '80px';
+                navMenu.style.left = '0';
+                navMenu.style.width = '100%';
+                navMenu.style.backgroundColor = 'var(--brand-black)';
+                navMenu.style.height = 'auto';
+                navMenu.style.padding = '20px 0';
+                navMenu.style.borderBottom = '3px solid var(--corlu-red)';
+                
+                const menuItems = navMenu.querySelectorAll('li');
+                menuItems.forEach(item => {
+                    item.style.width = '100%';
+                    item.style.justifyContent = 'center';
+                    item.querySelector('a').style.padding = '15px 0';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
