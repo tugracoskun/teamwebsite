@@ -147,7 +147,7 @@
             position: relative;
         }
 
-        .nav-menu a:hover {
+        .nav-menu a:hover, .nav-menu a.active {
             color: var(--corlu-yellow);
         }
 
@@ -163,7 +163,7 @@
             transition: transform 0.3s ease;
         }
 
-        .nav-menu li:hover a::after {
+        .nav-menu li:hover a::after, .nav-menu a.active::after {
             transform: scaleX(1);
         }
 
@@ -349,7 +349,7 @@
             transition: width 5s linear;
         }
 
-        /* --- ORTA ÜST MAÇ KART BÖLÜMÜ (GERİ SAYIM SAYACI) --- */
+        /* --- ORTA ÜST MAÇ KART BÖLÜMÜ --- */
         .middle-match-card-container {
             background-color: var(--brand-black);
             padding: 20px 5% 0 5%;
@@ -529,7 +529,7 @@
             height: 30px;
         }
 
-        /* --- 2. SEKSİYON (KIRMIZI): ÇORLUSPOR TV (YOUTUBE ALANI) --- */
+        /* --- 2. SEKSİYON (KIRMIZI): ÇORLUSPOR TV (YOLCULUK RESİMLERİ) --- */
         .media-orange-section {
             background-color: var(--corlu-red);
             color: var(--brand-white);
@@ -660,31 +660,162 @@
             font-weight: 600;
         }
 
-        .media-tabs {
-            display: flex;
-            gap: 25px;
-            border-bottom: 2px solid rgba(255,255,255,0.2);
-            padding-bottom: 15px;
-            margin-bottom: 35px;
-            overflow-x: auto;
-            white-space: nowrap;
+        /* --- 3. SEKSİYON (SİYAH): TAKIMIMIZ (FIRST TEAM - HULL CITY STYLE) --- */
+        .players-grid-container {
+            background-color: var(--brand-black);
+            padding: 80px 5%;
+            border-top: 1px solid var(--brand-light-grey);
         }
 
-        .media-tabs a {
+        .players-filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .filter-tab-btn {
+            background-color: var(--brand-dark-grey);
+            color: var(--brand-white);
+            border: 1px solid var(--brand-light-grey);
+            padding: 10px 22px;
+            font-family: var(--font-display);
+            font-size: 1rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+        }
+
+        .filter-tab-btn.active, .filter-tab-btn:hover {
+            background-color: var(--corlu-yellow);
+            color: var(--brand-black);
+            border-color: var(--corlu-yellow);
+        }
+
+        .players-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .player-card {
+            background: linear-gradient(135deg, #151515 0%, #0d0d0d 100%);
+            border: 1px solid #1a1a1a;
+            border-radius: 8px;
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .player-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--corlu-yellow);
+            box-shadow: 0 12px 30px rgba(255, 239, 60, 0.1);
+        }
+
+        .player-number-bg {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-family: var(--font-display);
+            font-size: 7.5rem;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.04);
+            line-height: 1;
+            user-select: none;
+            z-index: 1;
+            transition: color 0.3s;
+        }
+
+        .player-card:hover .player-number-bg {
+            color: rgba(255, 239, 60, 0.08);
+        }
+
+        .player-img-wrap {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 85%;
+            height: 80%;
+            z-index: 2;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .player-img-wrap img {
+            max-height: 100%;
+            width: auto;
+            object-fit: contain;
+            transition: transform 0.3s;
+        }
+
+        .player-card:hover .player-img-wrap img {
+            transform: scale(1.05);
+        }
+
+        .player-info-wrap {
+            position: relative;
+            z-index: 3;
+            padding: 20px;
+            background: linear-gradient(360deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0) 100%);
+            width: 100%;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .player-card-position {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--corlu-yellow);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 5px;
+        }
+
+        .player-card-name {
+            font-family: var(--font-display);
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+
+        .player-card-name .p-first {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--brand-white);
+        }
+
+        .player-card-name .p-last {
+            display: block;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--brand-white);
+        }
+
+        .player-card-num-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
             font-family: var(--font-display);
             font-size: 1.1rem;
             font-weight: 700;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.7);
-            display: flex;
-            align-items: center;
+            color: var(--brand-white);
+            background-color: var(--corlu-red);
+            padding: 3px 8px;
+            border-radius: 4px;
+            z-index: 3;
         }
 
-        .media-tabs a:hover, .media-tabs a.active {
-            color: var(--corlu-yellow);
-        }
-
-        /* --- 3. SEKSİYON (BEYAZ): TARİHÇE VE BAŞKAN --- */
+        /* --- 4. SEKSİYON (BEYAZ): TARİHÇE VE KULÜP --- */
         .history-white-section {
             background-color: var(--brand-white);
             color: var(--brand-black);
@@ -795,7 +926,7 @@
             padding-top: 15px;
         }
 
-        /* --- 4. SEKSİYON (SİYAH): SPONSORLAR & FOOTER --- */
+        /* --- 5. SEKSİYON (SİYAH): SPONSORLAR & FOOTER --- */
         .sponsors-footer-section {
             background-color: var(--brand-black);
             color: var(--brand-white);
@@ -937,6 +1068,9 @@
             .youtube-video-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+            .players-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
             .history-grid {
                 grid-template-columns: 1fr;
             }
@@ -955,6 +1089,9 @@
                 display: block;
                 font-size: 1.5rem;
                 cursor: pointer;
+            }
+            .players-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
             .match-standings-section {
                 grid-template-columns: 1fr;
@@ -977,6 +1114,9 @@
         @media (max-width: 600px) {
             .top-utility-bar {
                 display: none;
+            }
+            .players-grid {
+                grid-template-columns: 1fr;
             }
             .youtube-video-grid {
                 grid-template-columns: 1fr;
@@ -1017,12 +1157,13 @@
             </div>
             
             <ul class="nav-menu">
-                <li><a href="#">HABERLER</a></li>
-                <li><a href="#">FİKSTÜR & MAÇLAR</a></li>
-                <li><a href="#">TAKIMIMIZ</a></li>
-                <li><a href="#">BİLETLER</a></li>
-                <li><a href="#">Tarihçemiz</a></li>
-                <li><a href="#">KULÜP</a></li>
+                <!-- ID Hedeflerine Yönlendiren Link Yapısı -->
+                <li><a href="#medya">HABERLER</a></li>
+                <li><a href="#fikstur">FİKSTÜR & MAÇLAR</a></li>
+                <li><a href="#takimimiz">TAKIMIMIZ</a></li>
+                <li><a href="#biletler">BİLETLER</a></li>
+                <li><a href="#tarihce">Tarihçemiz</a></li>
+                <li><a href="#kulup">KULÜP</a></li>
             </ul>
 
             <div class="header-actions">
@@ -1069,7 +1210,7 @@
     </div>
 
     <!-- ORTA ÜST MAÇ KART BÖLÜMÜ (GERİ SAYIM SAYACI) -->
-    <div class="middle-match-card-container">
+    <div class="middle-match-card-container" id="biletler">
         <div class="card__content">
             <!-- Rakip Crest (Altınordu Temsili) -->
             <img class="card__crest" src="https://upload.wikimedia.org/wikipedia/tr/1/15/Sunderland_AFC_logo.png" style="filter: hue-rotate(240deg);" alt="Altınordu">
@@ -1103,8 +1244,8 @@
         </div>
     </div>
 
-    <!-- 1. SEKSİYON (SİYAH): MAÇ MERKEZİ & PUAN DURUMU -->
-    <section class="match-standings-section">
+    <!-- 1. SEKSİYON (SİYAH): PUAN DURUMU & FİKSTÜR -->
+    <section class="match-standings-section" id="fikstur">
         
         <!-- Gelecek Maçlar Listesi -->
         <div>
@@ -1203,8 +1344,8 @@
         </div>
     </section>
 
-    <!-- 2. SEKSİYON (KIRMIZI): ÇORLUSPOR TV (YOLCULUK RESİMLERİ) -->
-    <section class="media-orange-section">
+    <!-- 2. SEKSİYON (KIRMIZI): ÇORLUSPOR TV -->
+    <section class="media-orange-section" id="medya">
         <h3 class="widget-title" style="border-bottom-color: var(--brand-white); margin-bottom: 10px; color: var(--brand-white);">
             <span>ÇORLUSPOR TV / MEDYA</span>
         </h3>
@@ -1258,8 +1399,454 @@
         </div>
     </section>
 
-    <!-- 3. SEKSİYON (BEYAZ): TARİHÇE VE BAŞKAN MESAJI -->
-    <section class="history-white-section">
+    <!-- 3. SEKSİYON (SİYAH): TAKIMIMIZ (FIRST TEAM - HULL CITY STYLE) -->
+    <section class="players-grid-container" id="takimimiz">
+        <h3 class="widget-title">
+            <span>TAKIMIMIZ</span>
+            <span style="font-size: 0.85rem; color: var(--text-muted);">TFF 2. LİG KADROSU</span>
+        </h3>
+
+        <!-- Dinamik Filtreleme Sekmeleri -->
+        <div class="players-filter-tabs">
+            <button class="filter-tab-btn active" data-filter="all">TÜMÜ</button>
+            <button class="filter-tab-btn" data-filter="kaleci">KALECİLER</button>
+            <button class="filter-tab-btn" data-filter="defans">SAVUNMA</button>
+            <button class="filter-tab-btn" data-filter="ortasaha">ORTA SAHA</button>
+            <button class="filter-tab-btn" data-filter="forvet">FORVETLER</button>
+        </div>
+
+        <!-- Oyuncu Kartları Grid Alanı -->
+        <div class="players-grid">
+            
+            <!-- KALECİLER -->
+            <div class="player-card" data-position="kaleci">
+                <span class="player-card-num-badge">1</span>
+                <span class="player-number-bg">1</span>
+                <div class="player-img-wrap">
+                    <img src="./images/players/ersin_aydin.png" onerror="this.src='https://images.gc.hullcityfcservices.co.uk/fit-in/384x512/fc470fcf-49b4-4b53-91b6-d442978007ae.png'" alt="Ersin Aydın">
+                </div>
+                <div class="player-info-wrap">
+                    <p class="player-card-position">Kaleci</p>
+                    <h4 class="player-card-name">
+                        <span class="p-first">Ersin</span>
+                        <span class="p-last">Aydın</span>
+                    </h4>
+                </div>
+            </div>
+
+            <div class="player-card" data-position="kaleci">
+                <span class="player-card-num-badge">55</span>
+                <span class="player-number-bg">55</span>
+                <div class="player-img-wrap">
+                    <img src="./images/players/efe_yagiz_turk.png" onerror="this.src='https://images.gc.hullcityfcservices.co.uk/fit-in/384x512/fc470fcf-49b4-4b53-91b6-d442978007ae.png'" alt="Efe Yağız Türk">
+                </div>
+                <div class="player-info-wrap">
+                    <p class="player-card-position">Kaleci</p>
+                    <h4 class="player-card-name">
+                        <span class="p-first">Efe Yağız</span>
+                        <span class="p-last">Türk</span>
+                    </h4>
+                </div>
+            </div>
+
+            <div class="player-card" data-position="kaleci">
+                <span class="player-card-num-badge">98</span>
+                <span class="player-number-bg">98</span>
+                <div class="player-img-wrap">
+                    <img src="./images/players/anil_hekimogullari.png" onerror="this.src='https://images.gc.hullcityfcservices.co.uk/fit-in/384x512/fc470fcf-49b4-4b53-91b6-d442978007ae.png'" alt="Anıl Hekimoğulları">
+                </div>
+                <div class="player-info-wrap">
+                    <p class="player-card-position">Kaleci</p>
+                    <h4 class="player-card-name">
+                        <span class="p-first">Anıl</span>
+                        <span class="p-last">Hekimoğulları</span>
+                    </h4>
+                </div>
+            </div>
+
+            <div class="player-card" data-position="kaleci">
+                <span class="player-card-num-badge">99</span>
+                <span class="player-number-bg">99</span>
+                <div class="player-img-wrap">
+                    <img src="./images/players/muhammed_hakan_tavukcu.png" onerror="this.src='https://images.gc.hullcityfcservices.co.uk/fit-in/384x512/fc470fcf-49b4-4b53-91b6-d442978007ae.png'" alt="Muhammed Hakan Tavukçu">
+                </div>
+                <div class="player-info-wrap">
+                    <p class="player-card-position">Kaleci</p>
+                    <h4 class="player-card-name">
+                        <span class="p-first">Muhammed Hakan</span>
+                        <span class="p-last">Tavukçu</span>
+                    </h4>
+                </div>
+            </div>
+
+            <!-- SAVUNMA -->
+            <div class="player-card" data-position="defans">
+                <span class="player-card-num-badge">33</span>
+                <span class="player-number-bg">33</span>
+                <div class="player-img-wrap">
+                    <img src="./images/players/enes_bagdemir.png" onerror="this.src='https://images.gc.hullcityfcservices.co.uk/fit-in/384x512/fc470fcf-49b4-4b53-91b6-d442978007ae.png'" alt="Enes Bağdemir">
+                </div>
+                <div class="player-info-wrap">
+                    <p class="player-card-position">Stoper</p>
+                    <h4 class="player-card-name">
+                        <span class="p-first">Enes</span>
+                        <span class="p-last">Bağdemir</span>
+                    </h4>
+                </div>
+            </div>
+
+            <div class="player-card" data-position="defans">
+                <span class="player-card-num-badge">66</span>
+                <span class="player-number-bg">66</span>
+                <div class="player-img-wrap">
+                    <img src="./images/players/onur_ozcan.png" onerror="this.src='https://images.gc.hullcityfcservices.co.uk/fit-in/384x512/fc470fcf-49b4-4b53-91b6-d442978007ae.png'" alt="Onur Özcan">
+                </div>
+                <div class="player-info-wrap">
+                    <p class="player-card-position">Stoper</p>
+                    <h4 class="player-card-name">
+                        <span class="p-first">Onur</span>
+                        <span class="p-last">Özcan</span>
+                    </h4>
+                </div>
+            </div>
+
+            <div class="player-card" data-position="defans">
+                <span class="player-card-num-badge">20</span>
+                <span class="player-number-bg">20</span>
+                <div class="player-img-wrap">
+                    <img src="./images/players/orkun_sarun.png" onerror="this.src='https://images.gc.hullcityfcservices.co.uk/fit-in/384x512/fc470fcf-49b4-4b53-91b6-d442978007ae.png'" alt="Orkun Sarun">
+                </div>
+                <div class="player-info-wrap">
+                    <p class="player-card-position">Stoper</p>
+                    <h4 class="player-card-name">
+                        <span class="p-first">Orkun</span>
+                        <span class="p-last">Sarun</span>
+                    </h4>
+                </div>
+            </div>
+
+            <div class="player-card" data-position="defans">
+                <span class="player-card-num-badge">58</span>
+                <span class="player-number-bg">58</span>
+                <div class="player-img-wrap">
+                    <img src="./images/players/huseyin_ayan.png" onerror="this.src='https://images.gc.hullcityfcservices.co.uk/fit-in/384x512/fc470fcf-49b4-4b53-91b6-d442978007ae.png'" alt="Hüseyin Ayan">
+                </div>
+                <div class="player-info-wrap">
+                    <p class="player-card-position">Stoper</p>
+                    <h4 class="player-card-name">
+                        <span class="p-first">Hüseyin</span>
+                        <span class="p-last">Ayan</span>
+                    </h4>
+                </div>
+            </div>
+
+            <div class="player-card" data-position="defans">
+                <span class="player-card-num-badge">68</span>
+                <span class="player-number-bg">68</span>
+                <div class="player-img-wrap">
+                    <img src="./images/players/sinan_baki_usluer.png" onerror="this.src='https://images.gc.hullcityfcservices.co.uk/fit-in/384x512/fc470fcf-49b4-4b53-91b6-d442978007ae.png'" alt="Sinan Baki Usluer">
+                </div>
+                <div class="player-info-wrap">
+                    <p class="player-card-position">Stoper</p>
+                    <h4 class="player-card-name">
+                        <span class="p-first">Sinan Baki</span>
+                        <span class="p-last">Usluer</span>
+                    </h4>
+                </div>
+            </div>
+
+            <div class="player-card" data-position="defans">
+                <span class="player-card-num-badge">70</span>
+                <span class="player-number-bg">70</span>
+                <div class="player-img-wrap">
+                    <img src="./images/players/ferit_ozler.png" onerror="this.src='https://images.gc.hullcityfcservices.co.uk/fit-in/384x512/fc470fcf-49b4-4b53-91b6-d442978007ae.png'" alt="Ferit Özler">
+                </div>
+                <div class="player-info-wrap">
+                    <p class="player-card-position">Sol Bek</p>
+                    <h4 class="player-card-name">
+                        <span class="p-first">Ferit</span>
+                        <span class="p-last">Özler</span>
+                    </h4>
+                </div>
+            </div>
+
+            <div class="player-card" data-position="defans">
+                <span class="player-card-num-badge">97</span>
+                <span class="player-number-bg">97</span>
+                <div class="player-img-wrap">
+                    <img src="./images/players/sarper_caglar.png" onerror="this.src='https://images.gc.hullcityfcservices.co.uk/fit-in/384x512/fc470fcf-49b4-4b53-91b6-d442978007ae.png'" alt="Sarper Çağlar">
+                </div>
+                <div class="player-info-wrap">
+                    <p class="player-card-position">Sol Bek</p>
+                    <h4 class="player-card-name">
+                        <span class="p-first">Sarper</span>
+                        <span class="p-last">Çağlar</span>
+                    </h4>
+                </div>
+            </div>
+
+            <div class="player-card" data-position="defans">
+                <span class="player-card-num-badge">2</span>
+                <span class="player-number-bg">2</span>
+                <div class="player-img-wrap">
+                    <img src="./images/players/mucahit_karagoz.png" onerror="this.src='https://images.gc.hullcityfcservices.co.uk/fit-in/384x512/fc470fcf-49b4-4b53-91b6-d442978007ae.png'" alt="Mücahit Karagöz">
+                </div>
+                <div class="player-info-wrap">
+                    <p class="player-card-position">Sol Bek</p>
+                    <h4 class="player-card-name">
+                        <span class="p-first">Mücahit</span>
+                        <span class="p-last">Karagöz</span>
+                    </h4>
+                </div>
+            </div>
+
+            <div class="player-card" data-position="defans">
+                <span class="player-card-num-badge">25</span>
+                <span class="player-number-bg">25</span>
+                <div class="player-img-wrap">
+                    <img src="./images/players/cihat_aktas.png" onerror="this.src='https://images.gc.hullcityfcservices.co.uk/fit-in/384x512/fc470fcf-49b4-4b53-91b6-d442978007ae.png'" alt="Cihat Aktaş">
+                </div>
+                <div class="player-info-wrap">
+                    <p class="player-card-position">Sağ Bek</p>
+                    <h4 class="player-card-name">
+                        <span class="p-first">Cihat</span>
+                        <span class="p-last">Aktaş</span>
+                    </h4>
+                </div>
+            </div>
+
+            <!-- ORTA SAHA -->
+            <div class="player-card" data-position="ortasaha">
+                <span class="player-card-num-badge">6</span>
+                <span class="player-number-bg">6</span>
+                <div class="player-img-wrap">
+                    <img src="./images/players/cagri_bulbul.png" onerror="this.src='https://images.gc.hullcityfcservices.co.uk/fit-in/384x512/fc470fcf-49b4-4b53-91b6-d442978007ae.png'" alt="Çağrı Bülbül">
+                </div>
+                <div class="player-info-wrap">
+                    <p class="player-card-position">Ön Libero</p>
+                    <h4 class="player-card-name">
+                        <span class="p-first">Çağrı</span>
+                        <span class="p-last">Bülbül</span>
+                    </h4>
+                </div>
+            </div>
+
+            <div class="player-card" data-position="ortasaha">
+                <span class="player-card-num-badge">5</span>
+                <span class="player-number-bg">5</span>
+                <div class="player-img-wrap">
+                    <img src="./images/players/emirhan_cavus.png" onerror="this.src='https://images.gc.hullcityfcservices.co.uk/fit-in/384x512/fc470fcf-49b4-4b53-91b6-d442978007ae.png'" alt="Emirhan Çavuş">
+                </div>
+                <div class="player-info-wrap">
+                    <p class="player-card-position">Merkez Orta Saha</p>
+                    <h4 class="player-card-name">
+                        <span class="p-first">Emirhan</span>
+                        <span class="p-last">Çavuş</span>
+                    </h4>
+                </div>
+            </div>
+
+            <div class="player-card" data-position="ortasaha">
+                <span class="player-card-num-badge">17</span>
+                <span class="player-number-bg">17</span>
+                <div class="player-img-wrap">
+                    <img src="./images/players/muzaffer_kocaer.png" onerror="this.src='https://images.gc.hullcityfcservices.co.uk/fit-in/384x512/fc470fcf-49b4-4b53-91b6-d442978007ae.png'" alt="Muzaffer Kocaer">
+                </div>
+                <div class="player-info-wrap">
+                    <p class="player-card-position">Merkez Orta Saha</p>
+                    <h4 class="player-card-name">
+                        <span class="p-first">Muzaffer</span>
+                        <span class="p-last">Kocaer</span>
+                    </h4>
+                </div>
+            </div>
+
+            <div class="player-card" data-position="ortasaha">
+                <span class="player-card-num-badge">88</span>
+                <span class="player-number-bg">88</span>
+                <div class="player-img-wrap">
+                    <img src="./images/players/omer_gumus.png" onerror="this.src='https://images.gc.hullcityfcservices.co.uk/fit-in/384x512/fc470fcf-49b4-4b53-91b6-d442978007ae.png'" alt="Ömer Gümüş">
+                </div>
+                <div class="player-info-wrap">
+                    <p class="player-card-position">Merkez Orta Saha</p>
+                    <h4 class="player-card-name">
+                        <span class="p-first">Ömer</span>
+                        <span class="p-last">Gümüş</span>
+                    </h4>
+                </div>
+            </div>
+
+            <div class="player-card" data-position="ortasaha">
+                <span class="player-card-num-badge">8</span>
+                <span class="player-number-bg">8</span>
+                <div class="player-img-wrap">
+                    <img src="./images/players/emirhan_kayar.png" onerror="this.src='https://images.gc.hullcityfcservices.co.uk/fit-in/384x512/fc470fcf-49b4-4b53-91b6-d442978007ae.png'" alt="Emirhan Kayar">
+                </div>
+                <div class="player-info-wrap">
+                    <p class="player-card-position">On Numara</p>
+                    <h4 class="player-card-name">
+                        <span class="p-first">Emirhan</span>
+                        <span class="p-last">Kayar</span>
+                    </h4>
+                </div>
+            </div>
+
+            <div class="player-card" data-position="ortasaha">
+                <span class="player-card-num-badge">10</span>
+                <span class="player-number-bg">10</span>
+                <div class="player-img-wrap">
+                    <img src="./images/players/mahsun_capkan.png" onerror="this.src='https://images.gc.hullcityfcservices.co.uk/fit-in/384x512/fc470fcf-49b4-4b53-91b6-d442978007ae.png'" alt="Mahsun Çapkan">
+                </div>
+                <div class="player-info-wrap">
+                    <p class="player-card-position">On Numara</p>
+                    <h4 class="player-card-name">
+                        <span class="p-first">Mahsun</span>
+                        <span class="p-last">Çapkan</span>
+                    </h4>
+                </div>
+            </div>
+
+            <div class="player-card" data-position="ortasaha">
+                <span class="player-card-num-badge">35</span>
+                <span class="player-number-bg">35</span>
+                <div class="player-img-wrap">
+                    <img src="./images/players/omer_turan.png" onerror="this.src='https://images.gc.hullcityfcservices.co.uk/fit-in/384x512/fc470fcf-49b4-4b53-91b6-d442978007ae.png'" alt="Ömer Turan">
+                </div>
+                <div class="player-info-wrap">
+                    <p class="player-card-position">On Numara</p>
+                    <h4 class="player-card-name">
+                        <span class="p-first">Ömer</span>
+                        <span class="p-last">Turan</span>
+                    </h4>
+                </div>
+            </div>
+
+            <!-- FORVETLER -->
+            <div class="player-card" data-position="forvet">
+                <span class="player-card-num-badge">11</span>
+                <span class="player-number-bg">11</span>
+                <div class="player-img-wrap">
+                    <img src="./images/players/caner_dogan.png" onerror="this.src='https://images.gc.hullcityfcservices.co.uk/fit-in/384x512/fc470fcf-49b4-4b53-91b6-d442978007ae.png'" alt="Caner Doğan">
+                </div>
+                <div class="player-info-wrap">
+                    <p class="player-card-position">Sol Kanat</p>
+                    <h4 class="player-card-name">
+                        <span class="p-first">Caner</span>
+                        <span class="p-last">Doğan</span>
+                    </h4>
+                </div>
+            </div>
+
+            <div class="player-card" data-position="forvet">
+                <span class="player-card-num-badge">47</span>
+                <span class="player-number-bg">47</span>
+                <div class="player-img-wrap">
+                    <img src="./images/players/mohamed_khalil.png" onerror="this.src='https://images.gc.hullcityfcservices.co.uk/fit-in/384x512/fc470fcf-49b4-4b53-91b6-d442978007ae.png'" alt="Mohamed Khalil">
+                </div>
+                <div class="player-info-wrap">
+                    <p class="player-card-position">Sol Kanat</p>
+                    <h4 class="player-card-name">
+                        <span class="p-first">Mohamed</span>
+                        <span class="p-last">Khalil</span>
+                    </h4>
+                </div>
+            </div>
+
+            <div class="player-card" data-position="forvet">
+                <span class="player-card-num-badge">18</span>
+                <span class="player-number-bg">18</span>
+                <div class="player-img-wrap">
+                    <img src="./images/players/eren_karaman.png" onerror="this.src='https://images.gc.hullcityfcservices.co.uk/fit-in/384x512/fc470fcf-49b4-4b53-91b6-d442978007ae.png'" alt="Eren Karaman">
+                </div>
+                <div class="player-info-wrap">
+                    <p class="player-card-position">Sol Kanat</p>
+                    <h4 class="player-card-name">
+                        <span class="p-first">Eren</span>
+                        <span class="p-last">Karaman</span>
+                    </h4>
+                </div>
+            </div>
+
+            <div class="player-card" data-position="forvet">
+                <span class="player-card-num-badge">21</span>
+                <span class="player-number-bg">21</span>
+                <div class="player-img-wrap">
+                    <img src="./images/players/hasan_gundogdu.png" onerror="this.src='https://images.gc.hullcityfcservices.co.uk/fit-in/384x512/fc470fcf-49b4-4b53-91b6-d442978007ae.png'" alt="Hasan Gündoğdu">
+                </div>
+                <div class="player-info-wrap">
+                    <p class="player-card-position">Sağ Kanat</p>
+                    <h4 class="player-card-name">
+                        <span class="p-first">Hasan</span>
+                        <span class="p-last">Gündoğdu</span>
+                    </h4>
+                </div>
+            </div>
+
+            <div class="player-card" data-position="forvet">
+                <span class="player-card-num-badge">14</span>
+                <span class="player-number-bg">14</span>
+                <div class="player-img-wrap">
+                    <img src="./images/players/volkan_ulug.png" onerror="this.src='https://images.gc.hullcityfcservices.co.uk/fit-in/384x512/fc470fcf-49b4-4b53-91b6-d442978007ae.png'" alt="Volkan Uluğ">
+                </div>
+                <div class="player-info-wrap">
+                    <p class="player-card-position">Sağ Kanat</p>
+                    <h4 class="player-card-name">
+                        <span class="p-first">Volkan</span>
+                        <span class="p-last">Uluğ</span>
+                    </h4>
+                </div>
+            </div>
+
+            <div class="player-card" data-position="forvet">
+                <span class="player-card-num-badge">7</span>
+                <span class="player-number-bg">7</span>
+                <div class="player-img-wrap">
+                    <img src="./images/players/cemil_devrim.png" onerror="this.src='https://images.gc.hullcityfcservices.co.uk/fit-in/384x512/fc470fcf-49b4-4b53-91b6-d442978007ae.png'" alt="Cemil Devrim">
+                </div>
+                <div class="player-info-wrap">
+                    <p class="player-card-position">Santrafor</p>
+                    <h4 class="player-card-name">
+                        <span class="p-first">Cemil</span>
+                        <span class="p-last">Devrim</span>
+                    </h4>
+                </div>
+            </div>
+
+            <div class="player-card" data-position="forvet">
+                <span class="player-card-num-badge">9</span>
+                <span class="player-number-bg">9</span>
+                <div class="player-img-wrap">
+                    <img src="./images/players/muhammet_arslantas.png" onerror="this.src='https://images.gc.hullcityfcservices.co.uk/fit-in/384x512/fc470fcf-49b4-4b53-91b6-d442978007ae.png'" alt="Muhammet Arslantaş">
+                </div>
+                <div class="player-info-wrap">
+                    <p class="player-card-position">Santrafor</p>
+                    <h4 class="player-card-name">
+                        <span class="p-first">Muhammet</span>
+                        <span class="p-last">Arslantaş</span>
+                    </h4>
+                </div>
+            </div>
+
+            <div class="player-card" data-position="forvet">
+                <span class="player-card-num-badge">22</span>
+                <span class="player-number-bg">22</span>
+                <div class="player-img-wrap">
+                    <img src="./images/players/koray_yagci.png" onerror="this.src='https://images.gc.hullcityfcservices.co.uk/fit-in/384x512/fc470fcf-49b4-4b53-91b6-d442978007ae.png'" alt="Koray Yağcı">
+                </div>
+                <div class="player-info-wrap">
+                    <p class="player-card-position">Santrafor</p>
+                    <h4 class="player-card-name">
+                        <span class="p-first">Koray</span>
+                        <span class="p-last">Yağcı</span>
+                    </h4>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 4. SEKSİYON (BEYAZ): TARİHÇE VE KULÜP (BAŞKAN) -->
+    <section class="history-white-section" id="tarihce">
         <div class="history-grid">
             
             <!-- Sol Kolon: Yeni Doğru Tarihçe Bilgisi -->
@@ -1282,11 +1869,11 @@
             </div>
 
             <!-- Sağ Kolon: Başkan Profil Kartı -->
-            <div class="president-card">
-                    <div class="president-img-wrap">
-                        <!-- Başkan fotoğrafı: images/president.jpg olarak yerleştirin -->
-                        <img src="./images/president.jpg" alt="Kulüp Başkanı">
-                    </div>
+            <div class="president-card" id="kulup">
+                <div class="president-img-wrap">
+                    <!-- Başkan fotoğrafı: images/president.jpg -->
+                    <img src="./images/president.jpg" alt="Kulüp Başkanı">
+                </div>
                 <span class="president-title">KULÜP BAŞKANI</span>
                 <h3 class="president-name">Ahmet Bayram</h3>
                 <p class="president-quote">
@@ -1297,7 +1884,7 @@
         </div>
     </section>
 
-    <!-- 4. SEKSİYON (SİYAH): SPONSORLAR & FOOTER -->
+    <!-- 5. SEKSİYON (SİYAH): SPONSORLAR & FOOTER -->
     <div class="sponsors-footer-section">
         
         <!-- Sponsorlar Alanı -->
@@ -1369,7 +1956,6 @@
     <!-- SCRIPT TABANLI ETKİLEŞİMLER -->
     <script>
         // --- GERİ SAYIM SAYACI (DİNAMİK JAVASCRIPT) ---
-        // Maç saatine geri sayım simülasyonu (2 gün 4 saat 54 dakika sonrası)
         const countdownDate = new Date().getTime() + (2 * 24 * 60 * 60 * 1000) + (4 * 60 * 60 * 1000) + (54 * 60 * 1000);
 
         const countdownInterval = setInterval(() => {
@@ -1394,6 +1980,101 @@
                 document.getElementById("timer-secs").innerText = "00";
             }
         }, 1000);
+
+        // --- ANIMASYONLU PÜRÜZSÜZ SAYFA İÇİ KAYDIRMA (SMOOTH SCROLLING) ---
+        const header = document.querySelector('header');
+        
+        document.querySelectorAll('.nav-menu a, .top-utility-bar a').forEach(anchor => {
+            const href = anchor.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        const headerHeight = header.offsetHeight;
+                        const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - headerHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            }
+        });
+
+        // --- OYUNCU SEKMELİ FİLTRELEME (DİNAMİK JAVASCRIPT) ---
+        const filterButtons = document.querySelectorAll('.filter-tab-btn');
+        const playerCards = document.querySelectorAll('.player-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Aktif butonu değiştirme
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const filterValue = button.getAttribute('data-filter');
+
+                playerCards.forEach(card => {
+                    if (filterValue === 'all' || card.getAttribute('data-position') === filterValue) {
+                        card.style.display = 'flex';
+                        card.style.opacity = '0';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                        }, 50);
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // --- SCROLL-SPY (KAYDIRMA TAKİBİ VE AKTİF MENÜ İŞARETLEME) ---
+        const sections = document.querySelectorAll('#biletler, #fikstur, #medya, #takimimiz, #tarihce, #kulup');
+        const navLinks = document.querySelectorAll('.nav-menu a');
+
+        window.addEventListener('scroll', () => {
+            let currentSectionId = '';
+            const headerHeight = header.offsetHeight;
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - headerHeight - 150; // Hassas tetikleme payı
+                if (window.scrollY >= sectionTop) {
+                    currentSectionId = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                const href = link.getAttribute('href');
+                
+                if (href === `#${currentSectionId}`) {
+                    link.classList.add('active');
+                }
+                
+                // Medya alanı ile HABERLER ve TAKIMIMIZ bağlantılarını senkronize etme
+                if (currentSectionId === 'medya' && href === '#medya') {
+                    link.classList.add('active');
+                }
+                if (currentSectionId === 'takimimiz' && href === '#takimimiz') {
+                    link.classList.add('active');
+                }
+                if (currentSectionId === 'tarihce' && href === '#tarihce') {
+                    link.classList.add('active');
+                }
+                if (currentSectionId === 'kulup' && href === '#kulup') {
+                    link.classList.add('active');
+                }
+                if (currentSectionId === 'fikstur' && href === '#fikstur') {
+                    link.classList.add('active');
+                }
+                if (currentSectionId === 'biletler' && href === '#biletler') {
+                    link.classList.add('active');
+                }
+            });
+        });
 
         // --- ARAMA PANELİ TETİKLEME ---
         const searchToggleBtn = document.getElementById('searchToggleBtn');
