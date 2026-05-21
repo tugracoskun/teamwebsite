@@ -1,0 +1,158 @@
+{
+  "upcoming": [
+    {
+      "home": {
+        "name": "Çorluspor 1947",
+        "logo": "https://upload.wikimedia.org/wikipedia/tr/7/77/%C3%87orluspor.png"
+      },
+      "away": {
+        "name": "Karacabey Belediyespor",
+        "logo": null
+      },
+      "date": "2026-06-15",
+      "time": "16:00"
+    },
+    {
+      "home": {
+        "name": "Bucaspor 1928",
+        "logo": null
+      },
+      "away": {
+        "name": "Çorluspor 1947",
+        "logo": "https://upload.wikimedia.org/wikipedia/tr/7/77/%C3%87orluspor.png"
+      },
+      "date": "2026-06-22",
+      "time": "18:30"
+    }
+  ],
+  "standings": [
+    {
+      "position": 1,
+      "name": "İnegöl Kafkas Gençlikspor",
+      "logo": null,
+      "played": 30,
+      "goalDiff": null,
+      "points": 62
+    },
+    {
+      "position": 2,
+      "name": "Çorluspor 1947",
+      "logo": null,
+      "played": 30,
+      "goalDiff": null,
+      "points": 61
+    },
+    {
+      "position": 3,
+      "name": "Küçükçekmece Sinop Spor",
+      "logo": null,
+      "played": 30,
+      "goalDiff": null,
+      "points": 56
+    },
+    {
+      "position": 4,
+      "name": "Etimesgut Belediyespor",
+      "logo": null,
+      "played": 30,
+      "goalDiff": null,
+      "points": 52
+    },
+    {
+      "position": 5,
+      "name": "Bursa Yıldırımspor",
+      "logo": null,
+      "played": 30,
+      "goalDiff": null,
+      "points": 49
+    },
+    {
+      "position": 6,
+      "name": "Silivrispor",
+      "logo": null,
+      "played": 30,
+      "goalDiff": null,
+      "points": 43
+    },
+    {
+      "position": 7,
+      "name": "Beykoz İshaklı",
+      "logo": null,
+      "played": 30,
+      "goalDiff": null,
+      "points": 40
+    },
+    {
+      "position": 8,
+      "name": "Nilüfer",
+      "logo": null,
+      "played": 30,
+      "goalDiff": null,
+      "points": 38
+    },
+    {
+      "position": 9,
+      "name": "Yalova",
+      "logo": null,
+      "played": 30,
+      "goalDiff": null,
+      "points": 37
+    },
+    {
+      "position": 10,
+      "name": "Galata",
+      "logo": null,
+      "played": 30,
+      "goalDiff": null,
+      "points": 37
+    },
+    {
+      "position": 11,
+      "name": "Bulvarspor",
+      "logo": null,
+      "played": 30,
+      "goalDiff": null,
+      "points": 35
+    },
+    {
+      "position": 12,
+      "name": "İnkılap",
+      "logo": null,
+      "played": 30,
+      "goalDiff": null,
+      "points": 35
+    },
+    {
+      "position": 13,
+      "name": "Çankaya",
+      "logo": null,
+      "played": 30,
+      "goalDiff": null,
+      "points": 34
+    },
+    {
+      "position": 14,
+      "name": "Kestel Çilekspor",
+      "logo": null,
+      "played": 30,
+      "goalDiff": null,
+      "points": 30
+    },
+    {
+      "position": 15,
+      "name": "Polatlı",
+      "logo": null,
+      "played": 30,
+      "goalDiff": null,
+      "points": 28
+    },
+    {
+      "position": 16,
+      "name": "Edirnespor",
+      "logo": null,
+      "played": 30,
+      "goalDiff": null,
+      "points": 15
+    }
+  ]
+}

@@ -1,0 +1,1309 @@
+/* ==========================================================================
+   1. STRÜKTÜR & RENK TANIMLAMALARI
+   ========================================================================== */
+:root {
+    --corlu-red: #CD0000; /* Çorluspor Kırmızı */
+    --corlu-yellow: #FFEF3C; /* Çorluspor Sarı */
+    --brand-black: #000000;
+    --brand-dark-grey: #111111;
+    --brand-mid-grey: #1c1c1c;
+    --brand-light-grey: #262626;
+    --brand-white: #ffffff;
+    --text-muted: #999999;
+    --font-display: 'Oswald', sans-serif;
+    --font-body: 'Montserrat', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--brand-black);
+    color: var(--brand-white);
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+
+/* ==========================================================================
+   2. NAVİGASYON VE HEADER (ÜST MENÜLER)
+   ========================================================================== */
+.top-utility-bar {
+    background-color: #0d0d0d;
+    border-bottom: 1px solid #1a1a1a;
+    padding: 0 5%;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 1000;
+    position: relative;
+}
+
+.utility-left {
+    display: flex;
+    gap: 20px;
+    height: 100%;
+    align-items: center;
+}
+
+.utility-left a {
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    height: 100%;
+    border-bottom: 2px solid transparent;
+}
+
+.utility-left a:hover, .utility-left a.active {
+    color: var(--brand-white);
+    border-bottom-color: var(--corlu-red);
+}
+
+.utility-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: var(--text-muted);
+}
+
+.utility-right a:hover {
+    color: var(--brand-white);
+}
+
+header {
+    background-color: var(--brand-black);
+    border-bottom: 4px solid var(--corlu-red);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    height: 90px;
+}
+
+.logo-wrap img {
+    height: 75px;
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.logo-wrap img:hover {
+    transform: scale(1.05);
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    height: 100%;
+    align-items: center;
+}
+
+.nav-menu li {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.nav-menu a {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 0 20px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.5px;
+    position: relative;
+}
+
+.nav-menu a:hover, .nav-menu a.active {
+    color: var(--corlu-yellow);
+}
+
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: var(--corlu-yellow);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.nav-menu li:hover a::after, .nav-menu a.active::after {
+    transform: scaleX(1);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    color: var(--brand-white);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.action-btn:hover {
+    color: var(--corlu-yellow);
+}
+
+.menu-toggle {
+    display: none;
+}
+
+.search-panel {
+    background-color: var(--brand-dark-grey);
+    border-bottom: 1px solid var(--corlu-red);
+    padding: 20px 5%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.search-panel.active {
+    display: flex;
+}
+
+.search-panel input {
+    width: 60%;
+    max-width: 600px;
+    background-color: var(--brand-black);
+    border: 1px solid var(--brand-light-grey);
+    color: #fff;
+    padding: 12px 20px;
+    font-family: inherit;
+    outline: none;
+}
+
+.search-panel input:focus {
+    border-color: var(--corlu-yellow);
+}
+
+/* ==========================================================================
+   3. HERO SLIDER & DYNAMIC COUNTDOWN
+   ========================================================================== */
+.hero-slider-container {
+    position: relative;
+    height: 60vh;
+    min-height: 400px;
+    overflow: hidden;
+    background-color: #000;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 5% 80px 5%;
+}
+
+.slide.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.slide-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+}
+
+.slide-bg::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.95) 100%);
+}
+
+.slide-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+}
+
+.slide-tag {
+    background-color: var(--corlu-red);
+    color: var(--brand-white);
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 5px 15px;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 15px;
+    clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+}
+
+.slide-title {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+}
+
+.btn-hull {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--corlu-red);
+    color: var(--brand-white);
+    padding: 12px 24px;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    clip-path: polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%);
+}
+
+.btn-hull:hover {
+    background-color: var(--corlu-yellow);
+    color: var(--brand-black);
+}
+
+.slider-dots {
+    position: absolute;
+    bottom: 30px;
+    left: 5%;
+    z-index: 10;
+    display: flex;
+    gap: 12px;
+}
+
+.dot {
+    width: 50px;
+    height: 4px;
+    background-color: rgba(255,255,255,0.3);
+    cursor: pointer;
+    position: relative;
+}
+
+.dot-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    background-color: var(--corlu-yellow);
+}
+
+.dot.active .dot-fill {
+    width: 100%;
+    transition: width 5s linear;
+}
+
+.middle-match-card-container {
+    background-color: var(--brand-black);
+    padding: 20px 5% 0 5%;
+    display: flex;
+    justify-content: center;
+}
+
+.card__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1100px;
+    padding: 15px 30px;
+    gap: 20px;
+    background-color: var(--brand-dark-grey);
+    border-left: 5px solid var(--corlu-red);
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.card__crest {
+    height: 70px;
+    width: 70px;
+    object-fit: contain;
+}
+
+.card__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+}
+
+.card__meta-team {
+    font-weight: 800;
+    font-size: 0.7rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--corlu-yellow);
+}
+
+.card__meta-name {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1.1;
+    color: var(--brand-white);
+}
+
+.card__meta-venue {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.card__timer {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.timer__unit-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 60px;
+    background-color: var(--brand-mid-grey);
+    padding: 8px 10px;
+    border-radius: 6px;
+    border-bottom: 2px solid var(--corlu-yellow);
+}
+
+.card__timer-value {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--brand-white);
+    line-height: 1;
+}
+
+.card__timer-label, .opacity-70 {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 4px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   4. SIYAH BÖLÜM: FİKSTÜR & SOFASCORE FLEX PUAN DURUMU
+   ========================================================================== */
+.match-standings-section {
+    background-color: var(--brand-black);
+    padding: 40px 5% 60px 5%;
+    display: grid;
+    grid-template-columns: 1.5fr 1.5fr;
+    gap: 40px;
+}
+
+.widget-title {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    border-bottom: 2px solid var(--corlu-red);
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.secondary-fixture-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.mini-fixture-card {
+    background-color: var(--brand-dark-grey);
+    padding: 15px 20px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mini-team-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+}
+
+.mini-team-info img {
+    height: 30px;
+}
+
+/* --- HULL CITY STİLİ MODERN PUAN DURUMU (FLEX CARD) --- */
+.standings-card-wrap {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: var(--brand-dark-grey);
+    border-radius: 8px;
+    border: 1px solid var(--brand-light-grey);
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.standings-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background-color: var(--brand-mid-grey);
+    border-bottom: 2px solid var(--brand-light-grey);
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+}
+
+.standings-header-left {
+    display: flex;
+    align-items: center;
+}
+
+.standings-header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.standings-val-title {
+    width: 45px;
+    text-align: center;
+}
+
+.standings-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--brand-light-grey);
+    transition: background-color 0.2s ease-in-out;
+}
+
+.standings-row:last-child {
+    border-bottom: none;
+}
+
+.standings-row:hover {
+    background-color: var(--brand-mid-grey);
+}
+
+.standings-row-left {
+    display: flex;
+    align-items: center;
+}
+
+.standings-row-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.standings-pos {
+    width: 30px;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+.standings-row.highlighted .standings-pos {
+    color: var(--corlu-yellow);
+}
+
+.standings-team-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: 10px;
+}
+
+.standings-team-info img {
+    height: 28px;
+    width: 28px;
+    object-fit: contain;
+}
+
+.standings-team-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--brand-white);
+}
+
+.standings-val {
+    width: 45px;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--brand-white);
+}
+
+.standings-val.pts {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--corlu-yellow);
+}
+
+.standings-row.highlighted {
+    background-color: rgba(205, 0, 0, 0.12);
+    border-left: 4px solid var(--corlu-red);
+}
+
+/* ==========================================================================
+   5. KIRMIZI BÖLÜM: MEDYA & RESİMLER
+   ========================================================================== */
+.media-orange-section {
+    background-color: var(--corlu-red);
+    color: var(--brand-white);
+    padding: 80px 5%;
+}
+
+.media-intro {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 30px;
+    max-width: 900px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.youtube-video-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.media-card {
+    background-color: var(--brand-black);
+    color: var(--brand-white);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    cursor: pointer;
+}
+
+.media-card-img-wrap {
+    position: relative;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background-color: #000;
+}
+
+.media-card-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.media-card:hover .media-card-img-wrap img {
+    transform: scale(1.04);
+    opacity: 0.95;
+}
+
+.play-overlay-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 55px;
+    height: 55px;
+    background-color: var(--brand-white);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--brand-black);
+    font-size: 1.2rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    opacity: 0.85;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+.media-card:hover .play-overlay-btn {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 1;
+    background-color: var(--corlu-yellow);
+}
+
+.duration-badge {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background-color: rgba(0,0,0,0.85);
+    color: var(--brand-white);
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.category-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: rgba(0,0,0,0.65);
+    color: var(--brand-white);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.media-card-body {
+    padding: 24px;
+    background-color: var(--brand-dark-grey);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    border-top: 1px solid var(--brand-light-grey);
+}
+
+.media-card-title {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    text-transform: uppercase;
+    line-height: 1.35;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.media-card-date {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: auto;
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   6. SİYAH BÖLÜM: TAKIMIMIZ & OYUNCU KARTLARI
+   ========================================================================== */
+.players-grid-container {
+    background-color: var(--brand-black);
+    padding: 80px 5%;
+    border-top: 1px solid var(--brand-light-grey);
+}
+
+.players-filter-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+}
+
+.filter-tab-btn {
+    background-color: var(--brand-dark-grey);
+    color: var(--brand-white);
+    border: 1px solid var(--brand-light-grey);
+    padding: 10px 22px;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+}
+
+.filter-tab-btn.active, .filter-tab-btn:hover {
+    background-color: var(--corlu-yellow);
+    color: var(--brand-black);
+    border-color: var(--corlu-yellow);
+}
+
+.players-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+.player-card {
+    background: linear-gradient(135deg, #151515 0%, #0d0d0d 100%);
+    border: 1px solid #1a1a1a;
+    border-radius: 8px;
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+.player-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--corlu-yellow);
+    box-shadow: 0 12px 30px rgba(255, 239, 60, 0.1);
+}
+
+.player-number-bg {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-family: var(--font-display);
+    font-size: 7.5rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.04);
+    line-height: 1;
+    user-select: none;
+    z-index: 1;
+    transition: color 0.3s;
+}
+
+.player-card:hover .player-number-bg {
+    color: rgba(255, 239, 60, 0.08);
+}
+
+.player-img-wrap {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 85%;
+    height: 80%;
+    z-index: 2;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.player-img-wrap img {
+    max-height: 100%;
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.3s;
+}
+
+.player-card:hover .player-img-wrap img {
+    transform: scale(1.05);
+}
+
+.player-info-wrap {
+    position: relative;
+    z-index: 3;
+    padding: 20px;
+    background: linear-gradient(360deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0) 100%);
+    width: 100%;
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.player-card-position {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--corlu-yellow);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 5px;
+}
+
+.player-card-name {
+    font-family: var(--font-display);
+    line-height: 1.1;
+    text-transform: uppercase;
+}
+
+.player-card-name .p-first {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--brand-white);
+}
+
+.player-card-name .p-last {
+    display: block;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--brand-white);
+}
+
+.player-card-num-badge {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--brand-white);
+    background-color: var(--corlu-red);
+    padding: 3px 8px;
+    border-radius: 4px;
+    z-index: 3;
+}
+
+/* ==========================================================================
+   7. BEYAZ BÖLÜM: KULÜP TARİHÇESİ
+   ========================================================================== */
+.history-white-section {
+    background-color: var(--brand-white);
+    color: var(--brand-black);
+    padding: 80px 5%;
+}
+
+.history-content h2 {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    position: relative;
+    color: var(--brand-black);
+}
+
+.history-content h2::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 80px;
+    height: 4px;
+    background-color: var(--corlu-red);
+}
+
+.history-text {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #333333;
+    text-align: justify;
+}
+
+.history-text p {
+    margin-bottom: 15px;
+}
+
+/* ==========================================================================
+   8. SİYAH BÖLÜM: KULÜP KİMLİĞİ, STADYUM & TARAFTAR
+   ========================================================================== */
+.club-info-section {
+    background-color: var(--brand-dark-grey);
+    color: var(--brand-white);
+    padding: 80px 5%;
+    border-top: 1px solid var(--brand-light-grey);
+}
+
+.club-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.club-details-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    justify-content: flex-start;
+    height: 100%;
+}
+
+.club-card {
+    background-color: var(--brand-mid-grey);
+    border-left: 4px solid var(--corlu-red);
+    border-radius: 8px;
+    padding: 35px 30px;
+    display: flex;
+    gap: 25px;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    min-height: 190px;
+}
+
+.card-avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 16px;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 3px solid var(--corlu-red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.club-card-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--corlu-yellow);
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.club-card h4 {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.club-card p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.club-card .card-icon {
+    font-size: 2rem;
+    color: var(--corlu-yellow);
+    line-height: 1;
+}
+
+.president-mini-card .pres-avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--corlu-red);
+    flex-shrink: 0;
+}
+
+.president-mini-card .pres-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.president-mini-card .pres-quote {
+    font-style: italic;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    font-size: 0.85rem !important;
+}
+
+.fan-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--corlu-yellow);
+    border: 1px solid var(--corlu-yellow);
+    color: var(--brand-black);
+    padding: 10px 22px;
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 4px;
+    margin-top: 15px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.fan-btn:hover {
+    background-color: transparent;
+    color: var(--corlu-yellow);
+}
+
+.club-visual-card {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    height: 100%;
+    min-height: 405px;
+}
+
+.club-visual-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.club-visual-card:hover img {
+    transform: scale(1.03);
+}
+
+.visual-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px;
+    background: linear-gradient(to top, rgba(0,0,0,0.98) 0%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0) 100%);
+    color: var(--brand-white);
+    z-index: 2;
+}
+
+.visual-overlay h4 {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    color: var(--brand-white);
+}
+
+.visual-overlay p {
+    font-size: 0.95rem;
+    color: var(--brand-white);
+    opacity: 0.95;
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   9. SİYAH BÖLÜM: SPONSORLAR & FOOTER
+   ========================================================================== */
+.sponsors-footer-section {
+    background-color: var(--brand-black);
+    color: var(--brand-white);
+}
+
+.sponsors-area {
+    padding: 60px 5%;
+    border-bottom: 1px solid var(--brand-mid-grey);
+    text-align: center;
+}
+
+.sponsor-title {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+}
+
+.sponsor-tier {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 60px;
+}
+
+.sponsor-tier img {
+    max-height: 80px;
+    max-width: 250px;
+    object-fit: contain;
+    opacity: 0.8;
+    transition: opacity 0.3s, filter 0.3s;
+}
+
+.sponsor-tier img:hover {
+    opacity: 1;
+    filter: none;
+}
+
+footer {
+    padding: 80px 5% 30px 5%;
+}
+
+.footer-top {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.footer-logo img {
+    height: 90px;
+    margin-bottom: 20px;
+}
+
+.footer-col h4 {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.footer-col h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 30px;
+    height: 2px;
+    background-color: var(--corlu-yellow);
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.footer-links a:hover {
+    color: var(--corlu-yellow);
+    padding-left: 5px;
+}
+
+.newsletter-form {
+    display: flex;
+    margin-top: 15px;
+}
+
+.newsletter-form input {
+    background-color: var(--brand-mid-grey);
+    border: 1px solid var(--brand-light-grey);
+    color: #fff;
+    padding: 12px;
+    width: 100%;
+    outline: none;
+    font-family: inherit;
+}
+
+.newsletter-form button {
+    background-color: var(--corlu-yellow);
+    border: none;
+    padding: 0 20px;
+    color: var(--brand-black);
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--brand-mid-grey);
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* ==========================================================================
+   10. MEDYA SORGULARI (RESPONSIVE)
+   ========================================================================== */
+@media (max-width: 1200px) {
+    .youtube-video-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .players-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .club-grid {
+        grid-template-columns: 1fr;
+    }
+    .club-visual-card {
+        min-height: 350px;
+    }
+    .club-details-cards {
+        height: auto;
+    }
+}
+
+@media (max-width: 992px) {
+    .nav-menu {
+        display: none;
+    }
+    .menu-toggle {
+        display: block;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+    .players-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .match-standings-section {
+        grid-template-columns: 1fr;
+    }
+    .card__content {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+    }
+    .card__timer {
+        width: 100%;
+        justify-content: flex-start;
+        margin-top: 15px;
+    }
+    .footer-top {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .top-utility-bar {
+        display: none;
+    }
+    .players-grid {
+        grid-template-columns: 1fr;
+    }
+    .youtube-video-grid {
+        grid-template-columns: 1fr;
+    }
+    .footer-top {
+        grid-template-columns: 1fr;
+    }
+    .slide-title {
+        font-size: 2.2rem;
+    }
+}

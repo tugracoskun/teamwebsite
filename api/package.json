@@ -1,0 +1,13 @@
+{
+  "name": "corluspor-proxy",
+  "version": "1.0.0",
+  "description": "Local proxy to fetch Sofascore data and expose API for the static site (fixes CORS)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "node-fetch": "^2.6.7"
+  }
+}
